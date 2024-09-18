@@ -1,0 +1,78 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #66a1ff;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    font-weight: bold;
+    text-indent: 50px;
+    
+}
+
+.logout-link {
+    color: rgb(0, 0, 0);
+    text-decoration: underline; 
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-top :30px;
+}
+
+.btn-custom {
+    background-color: #3B82F6;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-custom:hover {
+    background-color: #2563EB;
+}
+
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-custom th, .table-custom td {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+.table-custom th {
+    background-color: #F3F4F6;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table-custom tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-custom tr:hover {
+    background-color: #ddd;
+}
+
+.text-danger {
+    color: #E02424 !important;
+}
+
+.text-success {
+    color: #38A169 !important;
+}
