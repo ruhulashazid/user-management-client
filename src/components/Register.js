@@ -8,14 +8,16 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const date = new Date();
 
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/users/register', {
+            await axios.post('https://user-management-server-omega-gray.vercel.app/api/users/register', {
                 name,
                 email,
-                password
+                password,
+                date
             });
             navigate('/login'); // Redirect to login page after successful registration
         } catch (error) {
