@@ -17,7 +17,7 @@ const Register = () => {
                 name,
                 email,
                 password,
-                date
+                
             });
             navigate('/login'); // Redirect to login page after successful registration
         } catch (error) {
