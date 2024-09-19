@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Register from './components/Register';
 import Login from './components/Login';
 import UserManagement from './components/UserManagement';
@@ -21,7 +21,7 @@ function App() {
                     <Route path="/" element={
                         <div>
                             <h1>Welcome to User Management</h1>
-                            <p>Please register, log in, or manage users.</p>
+                            <p>Please <Link to="/register">register</Link>, <Link to="/login">log in</Link>, or <Link to="/users">manage users</Link>.</p>
                         </div>
                     } />
 
