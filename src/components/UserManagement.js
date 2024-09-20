@@ -18,7 +18,7 @@ const UserManagement = () => {
         const fetchUsers = async () => {
             const token = localStorage.getItem('token');
             try {
-                const response = await axios.get('https://user-management-server-omega-gray.vercel.app/api/users', {
+                const response = await axios.get('http://localhost:5000/api/users', {
                     headers: { 'authorization': `Bearer ${token}` }
                 });
                 setUsers(response.data);
@@ -34,7 +34,7 @@ const UserManagement = () => {
         const currentUser = getCurrentUser();
         if (currentUser) {
             try {
-                const response = await axios.get(`https://user-management-server-omega-gray.vercel.app/api/users/${currentUser.id}`, {
+                const response = await axios.get(`http://localhost:5000/api/users/${currentUser.id}`, {
                     headers: { 'authorization': `Bearer ${localStorage.getItem('token')}` }
                 });
                 setLoginUser(response.data);
@@ -80,7 +80,7 @@ const UserManagement = () => {
         const token = localStorage.getItem('token');
         try {
             for (let userId of selectedUsers) {
-                await axios.put(`https://user-management-server-omega-gray.vercel.app/api/users/block/${userId}`, {}, {
+                await axios.put(`http://localhost:5000/api/users/block/${userId}`, {}, {
                     headers: { 'authorization': `Bearer ${token}` }
                 });
             }
@@ -95,7 +95,7 @@ const UserManagement = () => {
         const token = localStorage.getItem('token');
         try {
             for (let userId of selectedUsers) {
-                await axios.put(`https://user-management-server-omega-gray.vercel.app/api/users/unblock/${userId}`, {}, {
+                await axios.put(`http://localhost:5000/api/users/unblock/${userId}`, {}, {
                     headers: { 'authorization': `Bearer ${token}` }
                 });
             }
@@ -106,8 +106,7 @@ const UserManagement = () => {
         }
     };
 
-    const handleShowDeleteModal = (userId) => {
-        setUserToDelete(userId);
+    const handleShowDeleteModal = () => {
         setShowModal(true);
     };
 
@@ -119,18 +118,19 @@ const UserManagement = () => {
     const handleDeleteUsers = async () => {
         const token = localStorage.getItem('token');
         try {
-            await axios.delete(`https://user-management-server-omega-gray.vercel.app/api/users/${userToDelete}`, {
-                headers: { 'authorization': `Bearer ${token}` }
-            });
-            setUsers(users.filter(user => user.id !== userToDelete));
-            setSelectedUsers(selectedUsers.filter(userId => userId !== userToDelete));
+            for (let userId of selectedUsers) {
+                await axios.delete(`http://localhost:5000/api/users/${userId}`, {
+                    headers: { 'authorization': `Bearer ${token}` }
+                });
+            }
+            setUsers(users.filter(user => !selectedUsers.includes(user.id)));
+            setSelectedUsers([]); // Clear the selection after deletion
             handleCloseModal();
         } catch (error) {
             console.error('Error deleting users:', error);
         }
     };
-
-    console.log(users)
+    
 
     return (
         <div className="container mt-4">
